@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "./store/todoSlice";
+import { removeTodo } from "./store/todoSlice";
 
 import TodoList from "./components/TodoList";
 import InputField from "./components/InputField";
@@ -10,7 +11,10 @@ function App() {
   const [text, setText] = useState();
   const dispatch = useDispatch();
 
-  const addTask = () => dispatch(addTodo(text));
+  const addTask = () => {
+    dispatch(addTodo({ text }));
+    setText("");
+  };
 
   const toggleTodoComplete = (todoId) => {
     // setTodos(
@@ -24,8 +28,8 @@ function App() {
     // );
   };
 
-  const removeTodo = (todoId) => {
-    // setTodos(todos.filter((todo) => todo.id !== todoId));
+  const removeTask = (todoId) => {
+    dispatch(removeTodo({ text }));
   };
 
   return (
