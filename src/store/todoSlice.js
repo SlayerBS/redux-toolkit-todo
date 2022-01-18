@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import TodoItem from "../components/TodoItem";
 
 const todoSlice = createSlice({
   name: "todos",
@@ -16,7 +17,12 @@ const todoSlice = createSlice({
     removeTodo(state, action) {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
-    toggleTodoComplete(state, action) {},
+    toggleTodoComplete(state, action) {
+      const toggledTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      toggledTodo.completed = !toggledTodo.completed;
+    },
   },
 });
 
